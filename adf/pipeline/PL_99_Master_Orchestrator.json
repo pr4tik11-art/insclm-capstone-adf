@@ -92,7 +92,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"pSourceFIle": "claims_status_updates.csv",
+						"pSourceFIle": "claim_status_updates.csv",
 						"pTargetFolder": "claim_status_updates"
 					}
 				}
