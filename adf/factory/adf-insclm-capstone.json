@@ -1,0 +1,15 @@
+{
+	"name": "adf-insclm-capstone",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d7c7a532-5e97-4efa-9ab7-0ecf98abdb35",
+		"tenantId": "e0275bc0-33e3-4f43-8688-64d5b044a431"
+	}
+}

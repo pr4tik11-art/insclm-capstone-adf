@@ -1,0 +1,86 @@
+{
+	"name": "PL_02_Ingest_CSV_To_Raw",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_CSV_To_Raw",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_ADLS_Binary_Parameterized",
+						"type": "DatasetReference",
+						"parameters": {
+							"pContainer": "lakehouse",
+							"pFolderPath": {
+								"value": "@concat('raw/', pipeline().parameters.pTargetFolder)",
+								"type": "Expression"
+							},
+							"pFileName": {
+								"value": "@pipeline().parameters.pSourceFile",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_ADLS_Binary_Parameterized",
+						"type": "DatasetReference",
+						"parameters": {
+							"pContainer": "lakehouse",
+							"pFolderPath": {
+								"value": "@concat('raw/', pipeline().parameters.pTargetFolder, '/', formatDateTime(utcNow(),'yyyy/MM/dd'))",
+								"type": "Expression"
+							},
+							"pFileName": {
+								"value": "@concat(pipeline().parameters.pTargetFolder, '_', pipeline().RunId, '.csv')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pSourceFIle": {
+				"type": "string",
+				"defaultValue": "claims.csv"
+			},
+			"pTargetFolder": {
+				"type": "string",
+				"defaultValue": "claims"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-05-21T11:31:01Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

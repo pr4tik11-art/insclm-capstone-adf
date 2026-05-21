@@ -1,0 +1,15 @@
+{
+	"name": "LS_AzureSQL_FromKV",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "sql-insclm-cap-11.database.windows.net",
+			"database": "sqldb-insclm-capstone",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SystemAssignedManagedIdentity"
+		}
+	}
+}

@@ -1,0 +1,90 @@
+{
+	"name": "PL_01_Ingest_SQL_To_Raw",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_SQL_To_Raw",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_AzureSQL_Parameterized",
+						"type": "DatasetReference",
+						"parameters": {
+							"pSchemaName": "dbo",
+							"pTableName": {
+								"value": "@pipeline().parameters.pSourceTable",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_ADLS_CSV_Parameterized",
+						"type": "DatasetReference",
+						"parameters": {
+							"pContainer": "lakehouse",
+							"pFolderPath": {
+								"value": "@concat('raw/', pipeline().parameters.pTargetFolder, '/', formatDateTime(utcNow(),'yyyy/MM/dd'))",
+								"type": "Expression"
+							},
+							"pFileName": {
+								"value": "@concat(pipeline().parameters.pTargetFolder, '_', pipeline().RunId, '.csv')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pSourceTable": {
+				"type": "string",
+				"defaultValue": "policy_master"
+			},
+			"pTargetFolder": {
+				"type": "string",
+				"defaultValue": "policy_master"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-05-21T11:27:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,41 @@
+{
+	"name": "DS_ADLS_Binary_Parameterized",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_FromKV",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pContainer": {
+				"type": "string",
+				"defaultValue": "lakehouse"
+			},
+			"pFolderPath": {
+				"type": "string"
+			},
+			"pFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().pFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().pFolderPath",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().pContainer",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

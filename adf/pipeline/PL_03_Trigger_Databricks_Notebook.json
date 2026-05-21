@@ -1,0 +1,45 @@
+{
+	"name": "PL_03_Trigger_Databricks_Notebook",
+	"properties": {
+		"activities": [
+			{
+				"name": "Trigger_Notebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.pNotebookPath",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"pNotebookPath": {
+				"type": "string",
+				"defaultValue": "/Shared/insclm_capstone/NB_01_bronze_ingestion"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-05-21T11:34:16Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

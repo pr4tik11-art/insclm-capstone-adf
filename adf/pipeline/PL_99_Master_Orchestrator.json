@@ -1,0 +1,155 @@
+{
+	"name": "PL_99_Master_Orchestrator",
+	"properties": {
+		"activities": [
+			{
+				"name": "Run_Ingest_PolicyMaster",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_01_Ingest_SQL_To_Raw",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Run_Bronze_Ingestion",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Run_Ingest_ClaimStatusUpdates",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_03_Trigger_Databricks_Notebook",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Run_Silver_Transformation",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Run_Bronze_Ingestion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_03_Trigger_Databricks_Notebook",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pNotebookPath": {
+							"value": "/Shared/insclm_capstone/NB_02_silver_transformation",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Run_Ingest_ClaimStatusUpdates",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Run_Ingest_Claims",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_02_Ingest_CSV_To_Raw",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pSourceFIle": "claims_status_updates.csv",
+						"pTargetFolder": "claim_status_updates"
+					}
+				}
+			},
+			{
+				"name": "Run_Ingest_CustomerMaster",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Run_Ingest_PolicyMaster",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_01_Ingest_SQL_To_Raw",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"pSourceTable": "customer_master",
+						"pTargetFolder": "customer_master"
+					}
+				}
+			},
+			{
+				"name": "Run_Ingest_Claims",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Run_Ingest_CustomerMaster",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_02_Ingest_CSV_To_Raw",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-05-21T11:45:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
