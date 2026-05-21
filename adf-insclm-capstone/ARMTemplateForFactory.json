@@ -451,7 +451,10 @@
 						"typeProperties": {
 							"notebookPath": "/Shared/insclm_capstone/NB_04_scd_policy_dim",
 							"baseParameters": {
-								"runId": "@pipeline().RunId"
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						},
 						"linkedServiceName": {
@@ -481,7 +484,10 @@
 						"typeProperties": {
 							"notebookPath": "/Shared/insclm_capstone/NB_03_silver_rejected_records",
 							"baseParameters": {
-								"runId": "@pipeline().RunId"
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						},
 						"linkedServiceName": {
@@ -511,7 +517,10 @@
 						"typeProperties": {
 							"notebookPath": "/Shared/insclm_capstone/NB_05_merge_claim_status",
 							"baseParameters": {
-								"runId": "@pipeline().RunId"
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						},
 						"linkedServiceName": {
@@ -541,7 +550,10 @@
 						"typeProperties": {
 							"notebookPath": "/Shared/insclm_capstone/NB_06_gold_tables",
 							"baseParameters": {
-								"runId": "@pipeline().RunId"
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						},
 						"linkedServiceName": {
@@ -571,7 +583,10 @@
 						"typeProperties": {
 							"notebookPath": "/Shared/insclm_capstone/NB_07_time_travel_demo",
 							"baseParameters": {
-								"runId": "@pipeline().RunId"
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						},
 						"linkedServiceName": {
@@ -601,7 +616,76 @@
 						"typeProperties": {
 							"notebookPath": "/Shared/insclm_capstone/NB_08_describe_history_optimize",
 							"baseParameters": {
-								"runId": "@pipeline().RunId"
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_Databricks_FromKV",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Run_NB09_SQL",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Run_NB08_Optimize",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Shared/insclm_capstone/NB_09_load_to_azure_sql",
+							"baseParameters": {
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_Databricks_FromKV",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Run_NB10_Audit",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Run_NB09_SQL",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Shared/insclm_capstone/NB_10_audit_logger",
+							"baseParameters": {
+								"runId": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
 							}
 						},
 						"linkedServiceName": {
