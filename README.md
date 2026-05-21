@@ -11,7 +11,7 @@ An end-to-end Azure Data Engineering Lakehouse that analyses insurance policyhol
 | Member | Role | Owns |
 |--------|------|------|
 | Pratik | Azure Source + ADF Engineer | Azure infrastructure, Key Vault, ADF pipelines, raw zone ingestion |
-| Member 2 | Databricks Claims Engineer | Bronze Delta, Silver Delta, cleaning, joins, business flags |
+| Manas | Databricks Claims Engineer | Bronze Delta, Silver Delta, cleaning, joins, business flags |
 | Sreya | SCD + Gold + Reporting Engineer | SCD Type 2, Delta MERGE, Gold tables, Time Travel, Azure SQL reporting |
 
 ---
