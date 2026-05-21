@@ -326,6 +326,66 @@
 					"referenceName": "LS_Databricks_FromKV",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Run_NB09_SQL",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_NB08_Optimize",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_09_load_to_azure_sql",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Run_NB10_Audit",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_NB09_SQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_10_audit_logger",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": [],
