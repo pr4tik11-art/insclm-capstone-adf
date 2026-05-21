@@ -1,6 +1,5 @@
 {
 	"name": "LS_Databricks_FromKV",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureDatabricks",
@@ -14,7 +13,8 @@
 				},
 				"secretName": "databricks-pat"
 			},
-			"existingClusterId": "0521-072004-qkvwqtnm"
+			"existingClusterId": "0521-220235-2ryrwc6a"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
