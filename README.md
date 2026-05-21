@@ -128,17 +128,17 @@ lakehouse/
 
 | Layer | Database | Table | Rows | Owner |
 |-------|----------|-------|------|-------|
-| Bronze | bronze_insclm | bronze_claims | 2,200 | Member 2 |
-| Bronze | bronze_insclm | bronze_claim_status_updates | 1,600 | Member 2 |
-| Bronze | bronze_insclm | bronze_policy_master | 1,500 | Member 2 |
-| Bronze | bronze_insclm | bronze_customer_master | 1,000 | Member 2 |
-| Silver | silver_insclm | silver_customer_dim | 1,000 | Member 2 |
-| Silver | silver_insclm | silver_claims_fact | ~2,080 | Member 2 |
+| Bronze | bronze_insclm | bronze_claims | 2,200 | Manas |
+| Bronze | bronze_insclm | bronze_claim_status_updates | 1,600 | Manas |
+| Bronze | bronze_insclm | bronze_policy_master | 1,500 | Manas |
+| Bronze | bronze_insclm | bronze_customer_master | 1,000 | Manas |
+| Silver | silver_insclm | silver_customer_dim | 1,000 | Manas |
+| Silver | silver_insclm | silver_claims_fact | ~2,080 | Manas |
 | Silver | silver_insclm | silver_policy_dim | 1,500+ | Sreya |
 | Silver | silver_insclm | silver_claim_status_history | 1,600 | Sreya |
-| Rejected | rejected_insclm | rejected_claims | ~120 | Member 2 |
-| Rejected | rejected_insclm | rejected_status_updates | 0 | Member 2 |
-| Rejected | rejected_insclm | rejected_policy | 0 | Member 2 |
+| Rejected | rejected_insclm | rejected_claims | ~120 | Manas |
+| Rejected | rejected_insclm | rejected_status_updates | 0 | Manas |
+| Rejected | rejected_insclm | rejected_policy | 0 | Manas |
 | Gold | gold_insclm | gold_claim_summary | — | Sreya |
 | Gold | gold_insclm | gold_policy_history_summary | — | Sreya |
 | Gold | gold_insclm | gold_suspicious_claim_summary | — | Sreya |
@@ -305,12 +305,12 @@ NB_00 → NB_01 → NB_02 (Cells 1-4) → NB_04 → NB_02 (Cells 5-7)
 
 | From | To | Artifact | Verification |
 |------|----|----------|--------------|
-| Pratik | Member 2 | Raw zone populated | `dbutils.fs.ls(RAW_PATH)` shows 4 folders |
+| Pratik | Manas | Raw zone populated | `dbutils.fs.ls(RAW_PATH)` shows 4 folders |
 | Pratik | All | Key Vault secrets added | `dbutils.secrets.list("kv-insclm")` lists ~22 secrets |
-| Sreya | Member 2 | silver_policy_dim ready | `spark.table("silver_insclm.silver_policy_dim").count()` = 1500+ |
-| Member 2 | Sreya | silver_claims_fact ready | `spark.table("silver_insclm.silver_claims_fact").count()` = ~2080 |
+| Sreya | Manas | silver_policy_dim ready | `spark.table("silver_insclm.silver_policy_dim").count()` = 1500+ |
+| Manas | Sreya | silver_claims_fact ready | `spark.table("silver_insclm.silver_claims_fact").count()` = ~2080 |
 | Sreya | Group | Reporting tables in Azure SQL | Query `reporting.fact_claim_summary` from SSMS |
 
 ---
 
-*Last updated: Capstone 06 — Team: Pratik · Member 2 · Sreya*
+*Last updated: Capstone 06 — Team: Pratik · Manas · Sreya*
