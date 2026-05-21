@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-insclm-capstone"
+		},
+		"LS_ADLS_FromKV_properties_typeProperties_url": {
+			"value": "https://stinsclmcap11.dfs.core.windows.net"
+		},
+		"LS_AzureSQL_FromKV_properties_typeProperties_server": {
+			"value": "sql-insclm-cap-11.database.windows.net"
+		},
+		"LS_AzureSQL_FromKV_properties_typeProperties_database": {
+			"value": "sqldb-insclm-capstone"
+		},
+		"LS_Databricks_FromKV_properties_typeProperties_existingClusterId": {
+			"value": "0521-072004-qkvwqtnm"
+		},
+		"LS_KeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-insclm-cap-11.vault.azure.net/"
+		}
+	}
+}
