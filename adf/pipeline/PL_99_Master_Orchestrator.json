@@ -38,7 +38,10 @@
 						"referenceName": "PL_03_Trigger_Databricks_Notebook",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"pNotebookPath": "/Workspace/Shared/insclm_capstone/NB_01_bronze_ingestion"
+					}
 				}
 			},
 			{
@@ -64,7 +67,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"pNotebookPath": {
-							"value": "/Shared/insclm_capstone/NB_02_silver_transformation",
+							"value": "/Workspace/Shared/insclm_capstone/NB_02_silver_transformation",
 							"type": "Expression"
 						}
 					}
@@ -167,9 +170,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_04_scd_policy_dim",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_04_scd_policy_dim",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -197,9 +203,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_03_silver_rejected_records",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_03_silver_rejected_records",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -227,9 +236,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_05_merge_claim_status",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_05_merge_claim_status",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -257,9 +269,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_06_gold_tables",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_06_gold_tables",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -287,9 +302,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_07_time_travel_demo",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_07_time_travel_demo",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -317,9 +335,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_08_describe_history_optimize",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_08_describe_history_optimize",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -347,9 +368,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_09_load_to_azure_sql",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_09_load_to_azure_sql",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -377,9 +401,12 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Shared/insclm_capstone/NB_10_audit_logger",
+					"notebookPath": "/Workspace/Shared/insclm_capstone/NB_10_audit_logger",
 					"baseParameters": {
-						"runId": "@pipeline().RunId"
+						"runId": {
+							"value": "@pipeline().RunId",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
