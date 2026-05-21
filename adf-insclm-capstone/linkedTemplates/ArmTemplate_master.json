@@ -21,7 +21,7 @@
 		},
 		"LS_Databricks_FromKV_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "0521-072004-qkvwqtnm"
+			"defaultValue": "0521-220235-2ryrwc6a"
 		},
 		"LS_KeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",

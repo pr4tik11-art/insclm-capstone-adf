@@ -15,7 +15,7 @@
 			"value": "sqldb-insclm-capstone"
 		},
 		"LS_Databricks_FromKV_properties_typeProperties_existingClusterId": {
-			"value": "0521-072004-qkvwqtnm"
+			"value": "0521-220235-2ryrwc6a"
 		},
 		"LS_KeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://kv-insclm-cap-11.vault.azure.net/"
