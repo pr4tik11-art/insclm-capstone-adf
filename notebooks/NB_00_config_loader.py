@@ -1,3 +1,10 @@
+# =============================================================
+# NB_00_config_loader
+# Single source of truth for all paths and credentials.
+# Every other notebook starts with: %run ./NB_00_config_loader
+# NO hardcoded values — everything comes from Key Vault.
+# =============================================================
+
 KV_SCOPE = "kv-insclm"
 
 # ── ADLS Configuration ───────────────────────────────────────
