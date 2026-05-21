@@ -46,7 +46,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Run_Bronze_Ingestion",
+						"activity": "Run_NB04_SCD",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -145,6 +145,186 @@
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Run_NB04_SCD",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_Bronze_Ingestion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_04_scd_policy_dim",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Run_NB03_Rejected",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_Silver_Transformation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_03_silver_rejected_records",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Run_NB05_Merge",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_NB03_Rejected",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_05_merge_claim_status",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Run_NB06_Gold",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_NB05_Merge",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_06_gold_tables",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Run_NB07_TimeTravel",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_NB06_Gold",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_07_time_travel_demo",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Run_NB08_Optimize",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Run_NB07_TimeTravel",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/insclm_capstone/NB_08_describe_history_optimize",
+					"baseParameters": {
+						"runId": "@pipeline().RunId"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_Databricks_FromKV",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
