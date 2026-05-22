@@ -320,7 +320,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_01_bronze_ingestion"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_01_bronze_ingestion.py"
 							}
 						}
 					},
@@ -347,7 +347,7 @@
 							"waitOnCompletion": true,
 							"parameters": {
 								"pNotebookPath": {
-									"value": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_02_silver_transformation",
+									"value": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_02_silver_transformation.py",
 									"type": "Expression"
 								}
 							}
@@ -453,7 +453,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_04_scd_policy_dim"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_04_scd_policy_dim.py"
 							}
 						}
 					},
@@ -479,7 +479,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_03_silver_rejected_records"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_03_silver_rejected_records.py"
 							}
 						}
 					},
@@ -505,7 +505,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_05_merge_claim_status"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_05_merge_claim_status.py"
 							}
 						}
 					},
@@ -531,7 +531,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_06_gold_tables"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_06_gold_tables.py"
 							}
 						}
 					},
@@ -557,7 +557,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_07_time_travel_demo"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_07_time_travel_demo.py"
 							}
 						}
 					},
@@ -583,7 +583,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_08_describe_history_optimize"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_08_describe_history_optimize.py"
 							}
 						}
 					},
@@ -609,7 +609,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_09_load_to_azure_sql"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_09_load_to_azure_sql.py"
 							}
 						}
 					},
@@ -635,7 +635,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_10_audit_logger"
+								"pNotebookPath": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_10_audit_logger.py"
 							}
 						}
 					}
