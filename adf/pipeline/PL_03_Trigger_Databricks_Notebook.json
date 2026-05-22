@@ -35,7 +35,7 @@
 		"parameters": {
 			"pNotebookPath": {
 				"type": "string",
-				"defaultValue": "/Shared/insclm_capstone/NB_01_bronze_ingestion"
+				"defaultValue": "/Workspace/Users/updazvmnag_1777788725142@npupgradassessment.onmicrosoft.com/insclm_capstone/NB_01_bronze_ingestion"
 			}
 		},
 		"annotations": [],
